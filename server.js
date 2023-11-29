@@ -21,26 +21,14 @@ server.use(express.static(__dirname + '/public'));
 
 // import routers
 const productsRouter = require('./routes/api/products');
-const usersRouter = require('./routes/api/users');
-const foodsRouter = require('./routes/api/foods');
-const authRouter = require('./routes/auth/index');
-const servicesRouter = require('./routes/services/api1');
-const servicesRouter2 = require('./routes/services/api2');
-const servicesRouter3 = require('./routes/services/api3');
 
-// import routers for HTML views (pages)
-const indexPages = require('./routes/pages/index');
-const productsPages = require('./routes/pages/products');
-const usersPages = require('./routes/pages/users');
-const foodsPages = require('./routes/pages/foods');
+
+
+
 
 const port = config.port || 4000;
 
-// ### HTML and EJS routes ###
-server.use("/", indexPages);
-server.use("/", productsPages);
-server.use("/", usersPages);
-server.use("/", foodsPages);
+
 
 // ### JSON routes ### 
 server.get("/json", (req, res) => {
@@ -49,20 +37,6 @@ server.get("/json", (req, res) => {
 
 // # Products REST API
 server.use("/", productsRouter);
-
-// # Foods REST API
-server.use("/", foodsRouter);
-
-// # Users REST API
-server.use("/", usersRouter);
-
-// # Auth
-server.use("/", authRouter);
-
-// # services
-server.use("/", servicesRouter);
-server.use("/", servicesRouter2);
-server.use("/", servicesRouter3);
 
 server.listen(port, () => { // Callback function in ES6
 	console.log(`Server listening at ${port}`);
