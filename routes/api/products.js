@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // GET all products
-router.get("/getUploadUrl", async (req, res) => {
+router.get("/getUploadUrl", (req, res) => {
+	const reqparams = req.query
 	const incoming = req.body; 
-	const fakedata = `https://upload.aws.s3.something.com/bid=${incoming.businessId}&uid=${incoming.userId}`;
-	res.json(fakedata);
+	const fakedata = `https://upload.aws.s3.something.com\?bid=${reqparams.businessId}&uid=${reqparams.userId}`;
+	res.json(JSON.stringify(fakedata));
 });
 
 
