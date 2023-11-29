@@ -1,6 +1,6 @@
 // import config file
 const config = require('./config');
-
+const cors = require('cors');
 // import built-in Node packages
 const express = require('express'); // import express
 const server = express();
@@ -18,6 +18,14 @@ server.set('view engine', 'ejs');
 
 // expose static assets: CSS, JS files, images
 server.use(express.static(__dirname + '/public'));
+
+// CORS 
+server.use(cors({
+    methods: '*',
+    origin: '*',
+    optionsSuccessStatus: 200,
+    allowedHeaders: '*',
+}));
 
 // import routers
 const productsRouter = require('./routes/api/products');
